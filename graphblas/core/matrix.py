@@ -52,7 +52,7 @@ _CSC_FORMAT = Scalar.from_value(
 
 
 # Custom recipes
-def _m_add_v(updater, left, right, op):
+def _m_add_v(updater, left: MatrixLike, right: VectorLike, op) -> None:
     full = Vector(right.dtype, left._nrows, name="v_full")
     full[:] = 0
     temp = full.outer(right, binary.second).new(name="M_temp", mask=updater.kwargs.get("mask"))
@@ -95,7 +95,7 @@ class Matrix(BaseType):
     _name_counter = itertools.count()
     __networkx_plugin__ = "graphblas"
 
-    def __new__(cls, dtype=FP64, nrows=0, ncols=0, *, name=None):
+    def __new__(cls, dtype=FP64, nrows: int=0, ncols: int=0, *, name: str|None=None):
         self = object.__new__(cls)
         self.dtype = lookup_dtype(dtype)
         nrows = _as_scalar(nrows, _INDEX, is_cscalar=True)
