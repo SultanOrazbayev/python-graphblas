@@ -31,6 +31,12 @@ from .utils import (
 )
 from .vector import Vector, VectorExpression, VectorIndexExpr, _select_mask
 
+from typing import TypeVar
+
+ScalarLike = TypeVar("ScalarLike")  # Scalar, ScalarExpression, int, float, list, dict, etc.
+VectorLike = TypeVar("VectorLike")  # Vector, VectorExpression, etc.
+MatrixLike = TypeVar("MatrixLike")  # Matrix, TransposedMatrix, MatrixExpression, etc.
+
 ffi_new = ffi.new
 
 _CSR_FORMAT = Scalar.from_value(
